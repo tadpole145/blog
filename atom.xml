@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>tadpole145&#39;s blog</title>
+  
+  <subtitle>小蝌蚪的博客</subtitle>
+  <link href="https://tadpole145/tadpole145.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://tadpole145/tadpole145.github.io/"/>
+  <updated>2021-04-14T02:36:00.830Z</updated>
+  <id>https://tadpole145/tadpole145.github.io/</id>
+  
+  <author>
+    <name>tadpole145</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常用软件介绍</title>
+    <link href="https://tadpole145/tadpole145.github.io/2021/04/14/chang-yong-ruan-jian-jie-shao/"/>
+    <id>https://tadpole145/tadpole145.github.io/2021/04/14/chang-yong-ruan-jian-jie-shao/</id>
+    <published>2021-04-14T02:00:00.000Z</published>
+    <updated>2021-04-14T02:36:00.830Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;软件与工具&quot;&gt;&lt;a href=&quot;#软件与工具&quot; class=&quot;headerlink&quot; title=&quot;软件与工具&quot;&gt;&lt;/a&gt;软件与工具&lt;/h3&gt;&lt;h5 id=&quot;开场白&quot;&gt;&lt;a href=&quot;#开场白&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="工具" scheme="https://tadpole145/tadpole145.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="软件" scheme="https://tadpole145/tadpole145.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
+  
+</feed>
