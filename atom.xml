@@ -3,11 +3,11 @@
   <title>tadpole145&#39;s blog</title>
   
   <subtitle>小蝌蚪的博客</subtitle>
-  <link href="https://tadpole145/tadpole145.github.io/atom.xml" rel="self"/>
+  <link href="https://tadpole145.github.io/atom.xml" rel="self"/>
   
-  <link href="https://tadpole145/tadpole145.github.io/"/>
+  <link href="https://tadpole145.github.io/"/>
   <updated>2021-04-14T02:36:00.830Z</updated>
-  <id>https://tadpole145/tadpole145.github.io/</id>
+  <id>https://tadpole145.github.io/</id>
   
   <author>
     <name>tadpole145</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>常用软件介绍</title>
-    <link href="https://tadpole145/tadpole145.github.io/2021/04/14/chang-yong-ruan-jian-jie-shao/"/>
-    <id>https://tadpole145/tadpole145.github.io/2021/04/14/chang-yong-ruan-jian-jie-shao/</id>
+    <link href="https://tadpole145.github.io/2021/04/14/chang-yong-ruan-jian-jie-shao/"/>
+    <id>https://tadpole145.github.io/2021/04/14/chang-yong-ruan-jian-jie-shao/</id>
     <published>2021-04-14T02:00:00.000Z</published>
     <updated>2021-04-14T02:36:00.830Z</updated>
     
@@ -34,10 +34,10 @@
     
     
     
-    <category term="工具" scheme="https://tadpole145/tadpole145.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    <category term="工具" scheme="https://tadpole145.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="软件" scheme="https://tadpole145/tadpole145.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    <category term="软件" scheme="https://tadpole145.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
