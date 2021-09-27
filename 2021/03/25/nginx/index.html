@@ -1,0 +1,1536 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Nginx详解, Android java flutter python AI">
+    <meta name="baidu-site-verification" content="fmlEuI34ir" />
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY" />
+    <meta name="description" content="Nginx基本概念什么是NginxNginx是一个高性能的Http和反向代理服务器(也支持正向代理), 优点是占有内存小,并发能力强. Nginx专为性能优化而开发，性能是其最重要的考量.Nginx支持热部署,启动容易.
+反向代理正向代理:">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Nginx详解 | tadpole145&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="tadpole145's blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">tadpole145's blog</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">tadpole145's blog</div>
+        <div class="logo-desc">
+            
+            日常学习笔记,包括java,Android,flutter,算法,机器学习,python等.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Nginx详解
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" target="_blank">
+                                <span class="chip bg-color">代理工具</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category" target="_blank">
+                                工具
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-03-25
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        小蝌蚪
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        11 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h4><p>Nginx是一个高性能的Http和反向代理服务器(也支持正向代理), 优点是占有内存小,并发能力强. Nginx专为性能优化而开发，性能是其最重要的考量.Nginx支持热部署,启动容易.</p>
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>正向代理: 局域网中的客户端要访问Internet,需要通过代理服务器来访问,这种代理服务就称为正向代理.</p>
+<p>反向代理: 客户端并不需要知道真正的服务器地址,将请求发送给反向代理服务器,然后由反向代理服务器转发到真正的服务器.</p>
+<p>差别: 正向代理的是客户端,服务器不做任何配置,反向代理的是服务器,客户端并不感知.</p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><p>随着业务增长与数据的增加,服务器从单一变为多个,将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上,将负载分发到不同的服务器，也就是我们所说的负载均衡</p>
+<h4 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h4><p>为加快网站解析速度,将静/动态页面分由不同服务器来解析,降低单个服务器的压力,加快解析速度.</p>
+<h4 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h4><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210611094502.png" alt="img"></p>
+<h3 id="Nginx的安装"><a href="#Nginx的安装" class="headerlink" title="Nginx的安装"></a>Nginx的安装</h3><p><a target="_blank" rel="noopener" href="http://nginx.org/">官网地址</a>, 支持linux, windows系统</p>
+<h4 id="Nginx相关依赖"><a href="#Nginx相关依赖" class="headerlink" title="Nginx相关依赖"></a>Nginx相关依赖</h4><ul>
+<li>gcc</li>
+<li>pcre</li>
+<li>openssl</li>
+<li>zlib</li>
+</ul>
+<h4 id="安装方法以及常用命令"><a href="#安装方法以及常用命令" class="headerlink" title="安装方法以及常用命令"></a>安装方法以及常用命令</h4><ol>
+<li>命令行安装(可以一次安装多个)</li>
+</ol>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境</span>
+$ yum install gcc<span class="token operator">-</span>c<span class="token operator">++</span>
+<span class="token comment" spellcheck="true">// PCRE(Perl Compatible Regular Expressions) 是一个Perl库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx也需要此库。</span>
+$ yum install <span class="token operator">-</span>y pcre pcre<span class="token operator">-</span>devel
+<span class="token comment" spellcheck="true">//zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip</span>
+$ yum install <span class="token operator">-</span>y zlib zlib<span class="token operator">-</span>devel
+<span class="token comment" spellcheck="true">//OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http）</span>
+$ yum install <span class="token operator">-</span>y openssl openssl<span class="token operator">-</span>devel
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li><p>下载压缩包,手动安装</p>
+<ul>
+<li>下载对应的压缩包<ul>
+<li>官网下载对应格式的安装包</li>
+<li><strong>使用<code>wget</code>命令下载（推荐）</strong>。确保系统已经安装了wget，如果没有安装，执行 yum install wget 安装。</li>
+</ul>
+</li>
+<li>解压缩安装包</li>
+</ul>
+<pre class="line-numbers language-cmd"><code class="language-cmd">$ tar -zxvf nginx-1.19.0.tar.gz
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li> 进入目录,进行配置</li>
+</ul>
+<pre class="line-numbers language-cmd"><code class="language-cmd">$ cd nginx-1.19.0
+$ ./configure  //默认配置
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>安装</li>
+</ul>
+<pre class="line-numbers language-cmd"><code class="language-cmd">$ make && make install
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<h3 id="Nginx常用命令"><a href="#Nginx常用命令" class="headerlink" title="Nginx常用命令"></a>Nginx常用命令</h3><p>使用命令之前,必须进入Nginx的目录才行</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//切换目录</span>
+cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin
+<span class="token comment" spellcheck="true">//查看版本号</span>
+ $ <span class="token punctuation">.</span>/nginx <span class="token operator">-</span>v
+<span class="token comment" spellcheck="true">//查看安装路径</span>
+$ whereis nginx
+<span class="token comment" spellcheck="true">//启动</span>
+<span class="token punctuation">.</span>/nginx 
+<span class="token comment" spellcheck="true">//关闭</span>
+$ <span class="token punctuation">.</span>/nginx <span class="token operator">-</span>s stop
+<span class="token comment" spellcheck="true">//重新加载</span>
+<span class="token punctuation">.</span>/nginx <span class="token operator">-</span>s reload
+ <span class="token comment" spellcheck="true">//查看开放的端口号</span>
+firewall<span class="token operator">-</span>cmd <span class="token operator">--</span>list<span class="token operator">-</span>all
+    
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="修改Nginx的配置文件"><a href="#修改Nginx的配置文件" class="headerlink" title="修改Nginx的配置文件"></a>修改Nginx的配置文件</h3><p>配置文件路径: /usr/local/nginx/conf/nginx.conf</p>
+<h4 id="配置文件的组成"><a href="#配置文件的组成" class="headerlink" title="配置文件的组成"></a>配置文件的组成</h4><h5 id="1-全局块"><a href="#1-全局块" class="headerlink" title="1. 全局块"></a>1. 全局块</h5><p>从配置文件开始到event块之间的内容,主要设置一些影响Nginx的服务器整体运行的配置指令,包括配置运行Nginx服务器的用户(组),允许生成worker process数(越大,支持并发处理越多),进程PID存放路径,日志存放路径,类型, 以及配置文件的引入等.</p>
+<h5 id="2-enents块"><a href="#2-enents块" class="headerlink" title="2.enents块"></a>2.enents块</h5><p>events块涉及的指令主要影响Nginx服务器与用户的网络连接,灵活配置</p>
+<h5 id="3-http块"><a href="#3-http块" class="headerlink" title="3. http块"></a>3. http块</h5><p>配置最频繁的块.代理,缓存,日志定义等绝大多数功能和第三方模块的配置在这儿.</p>
+<h6 id="http全局块"><a href="#http全局块" class="headerlink" title="http全局块"></a>http全局块</h6><p>指令包括文件引入, MIME-TYPE定义,日志自定义,连接超时自定义,单链请求数上限等.</p>
+<h6 id="server块"><a href="#server块" class="headerlink" title="server块"></a>server块</h6><p>和虚拟主机有密切关系,每个http块可以包括多个server块,每个server可以当做一个虚拟主机,每个server块可以分为全局server块+多个location块.</p>
+<ul>
+<li>全局server块: 本虚拟机的监听配置和本虚拟机的名称或IP配置;</li>
+<li>location块, 作用是基于接收到的请求字符串,对虚拟主机之外的名称进行匹配,对特定请求进行处理.地址定向,数据缓存,和应答控制功能,第三方模块配置都在这.</li>
+</ul>
+<h6 id="location说明"><a href="#location说明" class="headerlink" title="location说明"></a>location说明</h6><p>语法如下:</p>
+<pre class="line-numbers language-java"><code class="language-java">location <span class="token punctuation">[</span> <span class="token operator">=</span> <span class="token operator">|</span> <span class="token operator">~</span> <span class="token operator">|</span> <span class="token operator">~</span><span class="token operator">*</span> <span class="token operator">|</span> <span class="token operator">^</span><span class="token operator">~</span><span class="token punctuation">]</span> uri <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//1、=: 用于不含正则表达式的uri前，要求请求字符串与uri严格匹配，如果匹配成功，就停止继续向下搜索并立即处理该请求</span>
+<span class="token comment" spellcheck="true">//2、~: 用于表示uri包含正则表达式，并且区分大小写</span>
+<span class="token comment" spellcheck="true">//3、~*: 用于表示uri包含正则表达式，并且不区分大小写</span>
+<span class="token comment" spellcheck="true">//4、^~: 用于不含正则表达式的uri前，要求Nginx服务器找到标识uri和请求字    符串匹配度最高的location后，立即使用此location处理请求，而不再使用location    块中的正则uri和请求字符串做匹配</span>
+<span class="token comment" spellcheck="true">//注意: 如果uri包含正则表达式，则必须要有~或者~*标识。</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Nginx的配置实例"><a href="#Nginx的配置实例" class="headerlink" title="Nginx的配置实例"></a>Nginx的配置实例</h3><h4 id="反向代理实例"><a href="#反向代理实例" class="headerlink" title="反向代理实例"></a>反向代理实例</h4><h5 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h5><p>使用nginx反向代理，根据访问的路径跳转到不同端口的服务中。例如, 访问<a target="_blank" rel="noopener" href="http://www.123.com/">www.123.com</a>, nginx暴露的端口是127.0.0.1:1000, 服务器tomcat地址是127.0.0.1:8081, 输入域名能打开tomcat主页</p>
+<h5 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h5><ul>
+<li><p>准备tomcat服务器</p>
+</li>
+<li><p>在本机host里面设置域名与Nginx端口的映射</p>
+</li>
+<li><p>开放对外访问的端口</p>
+</li>
+</ul>
+<p>默认linux防火墙屏蔽了对外访问的端口,如果需要开放,则需要手动打开</p>
+<pre class="line-numbers language-java"><code class="language-java">    firewall<span class="token operator">-</span>cmd <span class="token operator">--</span>add<span class="token operator">-</span>port<span class="token operator">=</span><span class="token number">8080</span><span class="token operator">/</span>tcp <span class="token operator">--</span>permanent
+    <span class="token comment" spellcheck="true">//重启防火墙</span>
+    firewall<span class="token operator">-</span>cmd<span class="token operator">-</span>reload
+   <span class="token comment" spellcheck="true">//查看开放的端口号</span>
+    firewall<span class="token operator">-</span>cmd <span class="token operator">--</span>list<span class="token operator">-</span>all
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="设置Nginx配置文件"><a href="#设置Nginx配置文件" class="headerlink" title="设置Nginx配置文件"></a>设置Nginx配置文件</h5><p>进入到Nginx的配置文件(/usr/local/nginx/conf/nginx.conf)中,修改参数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://i.loli.net/2021/06/10/Aj8zqTgr5iNPth1.png" alt="image-20210610155016946"></p>
+<h4 id="反向代理实例2"><a href="#反向代理实例2" class="headerlink" title="反向代理实例2"></a>反向代理实例2</h4><h5 id="实现效果-1"><a href="#实现效果-1" class="headerlink" title="实现效果"></a>实现效果</h5><p>监听同一个端口,根据不同的关键词转发到不同的服务器</p>
+<h5 id="配置清单"><a href="#配置清单" class="headerlink" title="配置清单"></a>配置清单</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://i.loli.net/2021/06/10/PxRlBh7qDIkvjwF.png" alt="image-20210610162713693"></p>
+<h4 id="负载均衡实例"><a href="#负载均衡实例" class="headerlink" title="负载均衡实例"></a>负载均衡实例</h4><h5 id="实现效果-2"><a href="#实现效果-2" class="headerlink" title="实现效果"></a>实现效果</h5><p>一个机器配置有多套相同服务的tomcat, 访问指定端口的时候, 平均分发请求到不同的tomcat中</p>
+<h5 id="配置清单-1"><a href="#配置清单-1" class="headerlink" title="配置清单"></a>配置清单</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210610172950.png" alt="img"></p>
+<h5 id="负载均衡分配策略"><a href="#负载均衡分配策略" class="headerlink" title="负载均衡分配策略"></a>负载均衡分配策略</h5><ol>
+<li><p>轮询(默认), 每个请求按时间顺序逐一分配到不 同的后端服务器，如果后端服务器down掉，能自动剔除</p>
+</li>
+<li><p>weigth; 权重默认为1,权重越高被分配的客户端越多。指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。</p>
+</li>
+<li><p><strong>ip_hash</strong>; 每个请求按访问ip的hash结果分配, 这样每个访客固定访问一个后端服务器,可以解诀session的问题。</p>
+</li>
+<li><p>fair (第三方); 按后端服务器的响应时间来分配请求，响应时间短的优先分配</p>
+</li>
+</ol>
+<pre class="line-numbers language-java"><code class="language-java">upstream server_pool 
+    server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.21</span><span class="token operator">:</span><span class="token number">80</span><span class="token punctuation">;</span>
+    server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.22</span><span class="token operator">:</span><span class="token number">80</span><span class="token punctuation">;</span>
+    fair<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//ip_hash;</span>
+<span class="token comment" spellcheck="true">//weigth;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//weight</span>
+upstream server_pool 
+    weigth<span class="token punctuation">;</span>
+    server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.21</span><span class="token operator">:</span><span class="token number">80</span> weight<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">5.22</span><span class="token operator">:</span><span class="token number">80</span> weight<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//ip_hash;</span>
+ 
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="动静分离实例"><a href="#动静分离实例" class="headerlink" title="动静分离实例"></a>动静分离实例</h4><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210610175500.png" alt="img"></p>
+<h5 id="配置挂单"><a href="#配置挂单" class="headerlink" title="配置挂单"></a>配置挂单</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210610181706.png" alt="image-20210610181706153"></p>
+<h4 id="高可用配置实例"><a href="#高可用配置实例" class="headerlink" title="高可用配置实例"></a>高可用配置实例</h4><h5 id="准备条件"><a href="#准备条件" class="headerlink" title="准备条件"></a>准备条件</h5><p>(1) 需要两台nginx服务器。<br>        (2) 需要keepalived, 检测Nginx是否还在运行的脚本<br>        (3) 需要虚拟ip,提供对外访问的虚拟地址.</p>
+<h5 id="安装keepalived"><a href="#安装keepalived" class="headerlink" title="安装keepalived"></a>安装keepalived</h5><ul>
+<li><p>命令行安装: $ yum install keepalived</p>
+</li>
+<li><p>安装包手动安装</p>
+</li>
+</ul>
+<p>默认安装路径: /etc/keepalived,  </p>
+<p>$ rpm -q -a keepalived    #查看是否已经安装上</p>
+<p>安装之后，在etc里面生成目录keepalived, 有配置文件keepalived.conf</p>
+<h5 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h5><ol>
+<li>修改keepalived的配置文件keepalived.conf</li>
+</ol>
+<pre class="line-numbers language-js"><code class="language-js">global_defs <span class="token punctuation">{</span>
+    notification_email <span class="token punctuation">{</span>
+      acassen@firewall<span class="token punctuation">.</span>loc
+      failover@firewall<span class="token punctuation">.</span>loc
+      sysadmin@firewall<span class="token punctuation">.</span>loc
+    <span class="token punctuation">}</span>
+    notification_email_from Alexandre<span class="token punctuation">.</span>Cassen@firewall<span class="token punctuation">.</span>loc
+    smtp_ server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">17.129</span>
+    smtp_connect_timeout <span class="token number">30</span>
+    router_id LVS_DEVEL    # LVS_DEVEL<span class="token punctuation">,</span>主机名<span class="token punctuation">,</span>这字段在<span class="token operator">/</span>etc<span class="token operator">/</span>hosts文件中看；通过它访问到主机
+<span class="token punctuation">}</span>
+
+vrrp_script chk_http_ port <span class="token punctuation">{</span>
+    script <span class="token string">"/usr/local/src/nginx_check.sh"</span>
+    interval <span class="token number">2</span>   # <span class="token punctuation">(</span>检测脚本执行的间隔<span class="token punctuation">)</span>2s
+    weight <span class="token number">2</span>  #权重，如果这个脚本检测为真，服务器权重<span class="token operator">+</span><span class="token number">2</span>
+<span class="token punctuation">}</span>
+
+vrrp_instance VI_1 <span class="token punctuation">{</span>
+    state BACKUP   # 备份服务器上将MASTER 改为BACKUP
+    <span class="token keyword">interface</span> <span class="token class-name">ens33</span> <span class="token comment" spellcheck="true">//网卡名称, 通过ifconfig查看当前服务器的网卡</span>
+    virtual_router_id <span class="token number">51</span> # 主、备机的virtual_router_id必须相同
+    priority <span class="token number">100</span>   #主、备机取不同的优先级，主机值较大，备份机值较小
+    advert_int <span class="token number">1</span>    #每隔1s发送一次心跳
+    authentication <span class="token punctuation">{</span>    # 校验方式， 类型是密码，密码<span class="token number">1111</span>
+        auth type PASS
+        auth pass <span class="token number">1111</span>
+    <span class="token punctuation">}</span>
+    virtual_ipaddress <span class="token punctuation">{</span> # 虛拟ip
+        <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">17.50</span> <span class="token comment" spellcheck="true">// 虛拟ip地址</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>在路径/usr/local/src/ 下新建检测脚本 nginx_check.sh</li>
+</ol>
+<pre class="line-numbers language-js"><code class="language-js">#<span class="token operator">!</span> <span class="token operator">/</span>bin<span class="token operator">/</span>bash
+A<span class="token operator">=</span><span class="token template-string"><span class="token string">`ps -C nginx -no-header | wc - 1`</span></span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> $A <span class="token operator">-</span>eq <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>then
+    <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin<span class="token operator">/</span>nginx
+    sleep <span class="token number">2</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token string">`ps -C nginx --no-header| wc -1`</span></span> <span class="token operator">-</span>eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>then
+        killall keepalived
+    fi
+fi
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>把两台服务器上nginx和keepalived启动</li>
+</ol>
+<pre class="line-numbers language-yaml"><code class="language-yaml">$ systemctl start keepalived.service        <span class="token comment" spellcheck="true">#keepalived启动</span>
+$ ps <span class="token punctuation">-</span>ef I grep keepalived        <span class="token comment" spellcheck="true">#查看keepalived是否启动</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="Nginx的工作原理"><a href="#Nginx的工作原理" class="headerlink" title="Nginx的工作原理"></a>Nginx的工作原理</h3><p>一个Nginx client,里面包含有一个master进程和1个或者多个worker进程,worker进程数量最好和cpu内核数量保持一致,才能最大发挥cpu性能.当有请求过来时,master进程会通知worker进程去争抢该任务</p>
+<h6 id="master进程职责"><a href="#master进程职责" class="headerlink" title="master进程职责"></a><strong>master进程职责</strong></h6><ul>
+<li>读取并验证配置信息。</li>
+<li>创建，绑定，关闭套接字。</li>
+<li>启动，终止，维护worker进程的个数。</li>
+</ul>
+<h6 id="worker进程职责"><a href="#worker进程职责" class="headerlink" title="worker进程职责"></a>worker进程职责</h6><ul>
+<li>接受，传入并处理来自客户端的连接；</li>
+<li>提供反向代理等功能；</li>
+</ul>
+<h6 id="Nginx支持热部署"><a href="#Nginx支持热部署" class="headerlink" title="Nginx支持热部署"></a>Nginx支持热部署</h6><p>修改配置文件后,如果配置文件有误,reload后，master会提示配置错误，并不会影响请求的处理。如果主配置文件发生改变，那么并不会立刻影响到WORKER进程，而是MASTER等到WORKER进程的连接请求处理完毕后KILL掉这个WORKER进程，然后重新生成一个WORKER进程，这样这个WORKER进程就将以新的配置启动了。也就是说，老的连接用老的配置，新的连接用新的配置。重新加载配置文件不会中断正在处理的请求。</p>
+<h6 id="worker进程如何处理请求"><a href="#worker进程如何处理请求" class="headerlink" title="worker进程如何处理请求"></a>worker进程如何处理请求</h6><p>一个请求可以由一个worker进程处理并只能由这个worker进程完全处理。Nginx在内部其实是维护了一个accept_mutex，其实就是一个锁，确保在某一时刻，一个请求只能被一个worker进程捕获。当一个worker进程在accept这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后才断开连接，这样一个完整的请求就是这样的了。Nginx采用了异步非阻塞事件驱动的方式来处理请求的</p>
+<h6 id="异步-非阻塞-事件驱动"><a href="#异步-非阻塞-事件驱动" class="headerlink" title="异步/非阻塞/事件驱动"></a><strong>异步/非阻塞/事件驱动</strong></h6><p>如果发生IO中断，那么你去做你的事情，但是过一段时间来看看IO调用是否结束，这就是非阻塞.为了更高效，Nginx利用了LINUX的EPOLL模型,它提供一种事件驱动机制，它可以监控多个事件是否准备好了，如果准备好了，那么就放入EPOLL队列中。这种机制是异步的。通过这样，WORKER进程只需要循环处理EPOLL队列中的请求，我们只需要在请求间不断切换</p>
+<pre class="line-numbers language-js"><code class="language-js"># 设置worker数量
+worker<span class="token punctuation">.</span>processes <span class="token number">4</span> 
+
+# <span class="token function">work绑定cpu</span><span class="token punctuation">(</span>4work绑定4cpu<span class="token punctuation">)</span>
+worker_cpu_affinity <span class="token number">0001</span> <span class="token number">0010</span> <span class="token number">0100</span> <span class="token number">1000</span>
+
+# work绑定cpu <span class="token punctuation">(</span>4work绑定8cpu中的<span class="token number">4</span>个<span class="token punctuation">)</span>
+worker_cpu_affinity <span class="token number">0000001</span> <span class="token number">00000010</span> <span class="token number">00000100</span> <span class="token number">00001000</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210611170714.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210611170922.png" alt="img"></p>
+<h5 id="连接数worker-connection"><a href="#连接数worker-connection" class="headerlink" title="连接数worker_ connection"></a><strong>连接数worker_ connection</strong></h5><ol>
+<li>发送请求，占用了woker的几个连接数? </li>
+</ol>
+<p>访问静态资源占用2个(请求与返回), 动态资源占用4个,因为worker还要与tomcat服务器进行连接.</p>
+<ol start="2">
+<li>nginx有一个master,有四个woker,每个woker支持最大的连接数1024,支持的最大并发数是多少?</li>
+</ol>
+<p>普通的静态访问最大并发数是: worker connections * worker processes /2，<br>而如果是HTTP作为反向代理来说，最大并发数量应该是worker connections * worker processes/4</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://tadpole145.github.io" class="b-link-green">tadpole145's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2021/03/25/nginx/" class="b-link-green">Nginx详解</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'MwS61zcq1Ow8LLzpCXKVv9ss-gzGzoHsz',
+        appKey: 'LSs7tpBsizccYa4D0LpHXfPM',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/04/08/linux-xi-tong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Linux系统学习">
+                        
+                        <span class="card-title">Linux系统学习</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Linux从0到入门
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="post-category" target="_blank">
+                                    开发教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/" target="_blank">
+                        <span class="chip bg-color">系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/23/zookeeper/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Zookeeper简介与应用">
+                        
+                        <span class="card-title">Zookeeper简介与应用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍zookeeper的安装与使用以及原理
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="post-category" target="_blank">
+                                    开发教程
+                                </a>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="post-category" target="_blank">
+                                    中间件
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/zookeeper/" target="_blank">
+                        <span class="chip bg-color">zookeeper</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: tadpole145's blog<br />'
+            + '作者: tadpole145<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 小蝌蚪.
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">64.6k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2021, 01, 19, 00, 00, 00); //北京时间2019-8-1 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+
+      
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+		
+	<script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+</script>
+<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+
+
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

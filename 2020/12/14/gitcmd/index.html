@@ -1,0 +1,1609 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Git使用详解, Android java flutter python AI">
+    <meta name="baidu-site-verification" content="fmlEuI34ir" />
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY" />
+    <meta name="description" content="Git, Github使用以及在IDEA中的集成git命令
+查看与升级//查看可配置的功能列表
+git config
+//查看自己已经配置的参数
+git config --list
+//查看帮助
+git config --help
+//查看">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Git使用详解 | tadpole145&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="tadpole145's blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">tadpole145's blog</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">tadpole145's blog</div>
+        <div class="logo-desc">
+            
+            日常学习笔记,包括java,Android,flutter,算法,机器学习,python等.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Git使用详解
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%BD%AF%E4%BB%B6/" target="_blank">
+                                <span class="chip bg-color">软件</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category" target="_blank">
+                                工具
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-14
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        小蝌蚪
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        10 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Git-Github使用以及在IDEA中的集成"><a href="#Git-Github使用以及在IDEA中的集成" class="headerlink" title="Git, Github使用以及在IDEA中的集成"></a>Git, Github使用以及在IDEA中的集成</h2><h4 id="git命令"><a href="#git命令" class="headerlink" title="git命令"></a>git命令</h4><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210804182459.png" alt="git命令"></p>
+<h5 id="查看与升级"><a href="#查看与升级" class="headerlink" title="查看与升级"></a>查看与升级</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//查看可配置的功能列表</span>
+git config
+<span class="token comment" spellcheck="true">//查看自己已经配置的参数</span>
+git config <span class="token operator">--</span>list
+<span class="token comment" spellcheck="true">//查看帮助</span>
+git config <span class="token operator">--</span>help
+<span class="token comment" spellcheck="true">//查看版本</span>
+git version
+<span class="token comment" spellcheck="true">//升级版本,由于网络原因,特别慢,建议通过镜像下载客户端,手动覆盖安装新版</span>
+git update<span class="token operator">-</span>git<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">-</span>windows
+<span class="token comment" spellcheck="true">//查看状态</span>
+git status
+<span class="token comment" spellcheck="true">//查看所有提交的完整日志 </span>
+git log 
+<span class="token comment" spellcheck="true">//查看所有版本id</span>
+git reflog
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="设置账户和密码"><a href="#设置账户和密码" class="headerlink" title="设置账户和密码"></a>设置账户和密码</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//保存账号密码,执行后,输入一次即可</span>
+git config <span class="token operator">--</span>global credential<span class="token punctuation">.</span>helper store
+<span class="token comment" spellcheck="true">//清除保存的账号密码</span>
+git config <span class="token operator">--</span>global credential<span class="token punctuation">.</span>helper reset
+<span class="token comment" spellcheck="true">//全局账户(电脑上所有的git仓库起作用)</span>
+git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>name  <span class="token string">"yourname"</span>  
+git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>email  <span class="token string">"your email"</span>
+<span class="token comment" spellcheck="true">//当前账户(只对当前仓库起作用)</span>
+git config  user<span class="token punctuation">.</span>name  <span class="token string">"username"</span>  
+git config  user<span class="token punctuation">.</span>email  <span class="token string">"email"</span>
+<span class="token comment" spellcheck="true">//局部变量覆盖全局变量,局部优先,没有设置才会去使用全局的.</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="修改账户密码"><a href="#修改账户密码" class="headerlink" title="修改账户密码"></a>修改账户密码</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//方法1,使用上面的设置命令重新设置一遍</span>
+<span class="token comment" spellcheck="true">//方法2使用替换命令进行替换</span>
+git config <span class="token operator">--</span>replace<span class="token operator">-</span>all user<span class="token punctuation">.</span>name <span class="token string">"name"</span>
+git config <span class="token operator">--</span>replace<span class="token operator">-</span>all user<span class="token punctuation">.</span>email <span class="token string">"123@qq.com"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="检出仓库"><a href="#检出仓库" class="headerlink" title="检出仓库"></a>检出仓库</h5><pre><code>git clone 仓库地址
+</code></pre>
+<h5 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h5><p>在本地文件目录下,输入命令</p>
+<pre class="line-numbers language-java"><code class="language-java">git init
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="添加与提交"><a href="#添加与提交" class="headerlink" title="添加与提交"></a>添加与提交</h5><pre class="line-numbers language-java"><code class="language-java">git add <span class="token operator">&lt;</span>filename<span class="token operator">></span>   <span class="token comment" spellcheck="true">//添加单个文件</span>
+git add <span class="token operator">*</span>         <span class="token comment" spellcheck="true">//添加所有文件</span>
+<span class="token comment" spellcheck="true">//提交</span>
+git commit <span class="token operator">-</span>m <span class="token string">"代码提交信息"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//删除暂存区指定文件名的文件</span>
+git rm <span class="token operator">--</span>cached xxx
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//创建分支</span>
+git branch 分支名称
+<span class="token comment" spellcheck="true">//查看分支版本</span>
+git branch <span class="token operator">-</span>v
+<span class="token comment" spellcheck="true">//切换分支</span>
+git checkout 分支名
+<span class="token comment" spellcheck="true">//合并其他分支到你的当前分支 </span>
+git merge 分支名
+<span class="token comment" spellcheck="true">//创建并切换到指定分支(2步合并)    </span>
+git checkout <span class="token operator">-</span>b 分支名
+<span class="token comment" spellcheck="true">//删除分支</span>
+git branch <span class="token operator">-</span>d 分支名
+<span class="token comment" spellcheck="true">//推送到指定分支</span>
+git push 别名 分支名
+<span class="token comment" spellcheck="true">//切换到指定版本ID，此时本地修改文件也会被还原到指定commitid版本，如果还未提交,请提交或者注意做好备份再切换</span>
+git reset <span class="token operator">--</span>hard commitId 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//查看完整提交日志</span>
+git log 
+<span class="token comment" spellcheck="true">//查看7位版本号</span>
+git reflog
+<span class="token comment" spellcheck="true">//1b2e1d63ff 是你想要标记的提交 ID 的前 10 位字符。你也可以用该提交 ID 的少一些的前几位，只要它是唯一的。</span>
+git tag <span class="token number">1.0</span><span class="token punctuation">.</span><span class="token number">0</span> 1b2e1d63ff
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="替换本地改动"><a href="#替换本地改动" class="headerlink" title="替换本地改动"></a>替换本地改动</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//获取服务器指定文件</span>
+git checkout <span class="token operator">--</span> <span class="token operator">&lt;</span>filename<span class="token operator">></span> 
+<span class="token comment" spellcheck="true">//丢弃所有的本地改动与提交，可以到服务器上获取最新的版本并将你本地主分支指向到它</span>
+git fetch origin 
+<span class="token comment" spellcheck="true">//回滚到本地指定版本</span>
+git reset <span class="token operator">--</span>hard origin<span class="token operator">/</span>master
+
+ 
+<span class="token comment" spellcheck="true">//git只是撤销本地的commit，并不会撤销本地文件</span>
+git reset HEAD<span class="token operator">~</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h5><pre><code>//彩色的 git 输出：
+git config color.ui true
+//内建的图形化 git：
+gitk
+</code></pre>
+<h4 id="github使用"><a href="#github使用" class="headerlink" title="github使用"></a>github使用</h4><h5 id="推送远程仓库"><a href="#推送远程仓库" class="headerlink" title="推送远程仓库"></a>推送远程仓库</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//默认推送到默认分支,适用于非第一次push</span>
+git push 
+<span class="token comment" spellcheck="true">//推送到指定分支</span>
+git push origin 分支名 
+    
+<span class="token comment" spellcheck="true">//查看当前所有远程地址别名 </span>
+git remote <span class="token operator">-</span>v 
+<span class="token comment" spellcheck="true">//起别名 </span>
+git remote add 别名 远程地址
+<span class="token comment" spellcheck="true">//推送本地分支上的内容到远程仓库    </span>
+git push  别名  分支
+git push 仓库地址 分支
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h6 id="情景一-本地有文件-无远程仓库-推送到远程仓库"><a href="#情景一-本地有文件-无远程仓库-推送到远程仓库" class="headerlink" title="情景一:   本地有文件,无远程仓库,推送到远程仓库"></a>情景一:   本地有文件,无远程仓库,推送到远程仓库</h6><ol>
+<li>本地文件目录先git init, 然后add, commit</li>
+<li>创建github远程仓库</li>
+<li>给远程仓库地址起别名,然后推送到指定分支, 或者直接使用地址</li>
+</ol>
+<p>tips: 如果不带分支会提示错误,按照错误提示设置后,下次推送可以免掉仓库地址/别名  分支了.<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210802172947.png" alt="image-20210802172939711"></p>
+<h6 id="情景二-本地无文件-远程仓库存在-拉取后修改并推送"><a href="#情景二-本地无文件-远程仓库存在-拉取后修改并推送" class="headerlink" title="情景二:  本地无文件,远程仓库存在,拉取后修改并推送"></a>情景二:  本地无文件,远程仓库存在,拉取后修改并推送</h6><ol>
+<li>本地目录终端输入 git clone 远程仓库地址</li>
+<li>修改后,正常add, commit,然后git push. </li>
+</ol>
+<p>tips: clone远端仓库,会给默认起个别名叫origin.可以通过git remote -v命令查看.</p>
+<h5 id="拉取远程仓库最新代码"><a href="#拉取远程仓库最新代码" class="headerlink" title="拉取远程仓库最新代码"></a>拉取远程仓库最新代码</h5><pre class="line-numbers language-java"><code class="language-java">git pull
+git pull 别名 分支名
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="github使用SSH免密登录"><a href="#github使用SSH免密登录" class="headerlink" title="github使用SSH免密登录"></a>github使用SSH免密登录</h5><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803093556.png" alt="image-20210803093556221" style="zoom: 50%;">
+
+<p>如果C:\Users\admin\ .ssh文件夹不存在,则会提示你需要添加一个公钥才可以使用ssh免密登录.如果有,则可以省略掉生成公钥这一步,直接配置就好了.    步骤如下:</p>
+<ol>
+<li><p>进入C:\Users\admin目录下,打开git bash终端, 输入命令</p>
+<pre><code>ssh-keygen -t rsa -C github用户名
+</code></pre>
+<p> 然后连续敲3次回车键,可以看到C:\Users\admin目录下已经生成了.ssh文件夹,包含如下几个文件,然后使用文本打开id_rsa.pub,复制里面的公钥.<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803094239.png" alt="image-20210803094239163"></p>
+</li>
+<li><p>打开github账户,点击设置,然后点击SSH侧边栏,添加SSH keys,将之前复制的公钥复制进去.名字随便取<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803102938.png" alt="image-20210803102938052"></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>使用ssh进行推送与拉取… </p>
+<pre class="line-numbers language-java"><code class="language-java">git push git<span class="token annotation punctuation">@github</span><span class="token punctuation">.</span>com<span class="token operator">:</span>tadpole145<span class="token operator">/</span>test<span class="token punctuation">.</span>git main
+git pull git<span class="token annotation punctuation">@github</span><span class="token punctuation">.</span>com<span class="token operator">:</span>tadpole145<span class="token operator">/</span>test<span class="token punctuation">.</span>git main
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h5 id="github向第三方开源库贡献代码"><a href="#github向第三方开源库贡献代码" class="headerlink" title="github向第三方开源库贡献代码"></a>github向第三方开源库贡献代码</h5><ol>
+<li>登录自己github账户,fork人家的代码</li>
+<li>checkout到本地进行修改</li>
+<li>add, commit ,push到自己github仓库</li>
+<li>点击仓库的pull requests, 创建一个新的请求,根据提示填写具体内容,然后提交.<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803112534.png" alt="image-20210803112534636"></li>
+<li>原开源作者会收到你推送的内容,会决定是否合并你提交的代码.一旦接受,你就称为了贡献者.</li>
+</ol>
+<h4 id="IDEA集成Git"><a href="#IDEA集成Git" class="headerlink" title="IDEA集成Git"></a>IDEA集成Git</h4><h5 id="配置git忽略文件"><a href="#配置git忽略文件" class="headerlink" title="配置git忽略文件"></a>配置git忽略文件</h5><h6 id="有哪些文件应该忽略"><a href="#有哪些文件应该忽略" class="headerlink" title="有哪些文件应该忽略"></a>有哪些文件应该忽略</h6><ul>
+<li>项目运行生成的中间文件</li>
+<li>系统环境差异生成的配置文件</li>
+<li>一些与项目实际功能无关,不参与服务器部署运行的文件.</li>
+</ul>
+<h6 id="如何忽略"><a href="#如何忽略" class="headerlink" title="如何忽略"></a>如何忽略</h6><ol>
+<li><p>创建忽略规则文件xxx.ignore,一般建议是git.ignore.存放路径随意,一般建议在用户目录C:\Users\用户名下,与gitconfig 文件在一起.</p>
+</li>
+<li><p>忽略内容, 除以下外,可以根据需求自定义添加</p>
+<pre class="line-numbers language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># Compiled class file </span>
+<span class="token attr-name">*.class</span> 
+<span class="token comment" spellcheck="true"># Log file </span>
+<span class="token attr-name">*.log</span> 
+ 
+<span class="token comment" spellcheck="true"># BlueJ files </span>
+<span class="token attr-name">*.ctxt</span> 
+ 
+<span class="token comment" spellcheck="true"># Mobile Tools for Java (J2ME) </span>
+<span class="token attr-name">.mtj.tmp/</span> 
+ 
+<span class="token comment" spellcheck="true"># Package Files # </span>
+<span class="token attr-name">*.jar</span> 
+<span class="token attr-name">*.war</span> 
+<span class="token attr-name">*.nar</span> 
+<span class="token attr-name">*.ear</span> 
+<span class="token attr-name">*.zip</span> 
+<span class="token attr-name">*.tar.gz</span> 
+<span class="token attr-name">*.rar</span> 
+ 
+<span class="token comment" spellcheck="true">#virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml </span>
+<span class="token attr-name">hs_err_pid*</span> 
+ 
+<span class="token attr-name">.classpath</span> 
+<span class="token attr-name">.project</span> 
+<span class="token attr-name">.settings</span> 
+<span class="token attr-name">target</span> 
+<span class="token attr-name">.idea</span> 
+<span class="token attr-name">*.iml</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>在C:\Users\用户名目录下找到.gitconfig , 然后引用忽略配置文件.<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803115507.png" alt="image-20210803115507534"></li>
+</ol>
+</li>
+</ol>
+<h5 id="IDEA集成Git-1"><a href="#IDEA集成Git-1" class="headerlink" title="IDEA集成Git"></a>IDEA集成Git</h5><p>在IDEA的Setting–version Control–&gt;Git中, 关联自己本地的Git客户端.<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803141109.png" alt="image-20210803141109187"></p>
+<h5 id="使用IDEA管理项目版本"><a href="#使用IDEA管理项目版本" class="headerlink" title="使用IDEA管理项目版本"></a>使用IDEA管理项目版本</h5><ol>
+<li>使用idea打开项目后,点击菜单栏VCS–&gt;import into Version Control—&gt;Git, 然后选择要管理的项目.</li>
+<li><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803141634.png" alt="image-20210803141634287"></li>
+</ol>
+<ol start="2">
+<li>选择项目名,右键–&gt;Git–&gt;add, 将所有文件添加到暂存区</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803142221.png" alt="image-20210803142221322"></p>
+<ol start="3">
+<li>添加完成后,重复上面的步骤, 在Git选项中, 选择Commit Directory.</li>
+</ol>
+<h6 id="版本切换"><a href="#版本切换" class="headerlink" title="版本切换"></a>版本切换</h6><p> 点击底部的Git菜单,然后选择想要的版本,右键弹出菜单,选择checkout即可切换到指定版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803145928.png" alt="image-20210803145928023"></p>
+<h6 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h6><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803154451.png" alt="image-20210803154450935"></p>
+<p>当然,还可以从当前版本创建分支,比如直接点击4,也可以创建.但是从示意图这个可以选择历史版本创建分支,我认为是最方便自由的.</p>
+<h6 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h6><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803155259.png" alt="image-20210803155259241"></p>
+<h6 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h6><p><strong>方法一, 选择项目,右键, 步骤如下图所示.</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803161152.png" alt="image-20210803161152562"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803161515.png" alt="image-20210803161515447"></p>
+<p><strong>方法二, 从底部分支入口合并</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803161657.png" alt="image-20210803161657456"></p>
+<p>Tips:  方法二,点击合并会直接合并,不会向方法一提供日志功能, 使用哪种根据自己喜好来决定.</p>
+<h4 id="IDEA集成Github"><a href="#IDEA集成Github" class="headerlink" title="IDEA集成Github"></a>IDEA集成Github</h4><h5 id="登录github账号"><a href="#登录github账号" class="headerlink" title="登录github账号"></a>登录github账号</h5><ol>
+<li>IDEA设置中的pluign中查看是否有github插件, 如果没有则安装</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803165233.png" alt="image-20210803165233852"></p>
+<ol start="2">
+<li>在设置中的github 添加账号</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803165613.png" alt="image-20210803165613499"></p>
+<p>由于账号密码登录经常显示404, 下面介绍通过token的登录方式</p>
+<h6 id="获取登录Token"><a href="#获取登录Token" class="headerlink" title="获取登录Token"></a>获取登录Token</h6><ol>
+<li>github账号—&gt;setting—&gt;developer settings</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803170909.png" alt="image-20210803170909429"></p>
+<ol start="2">
+<li>选择Personal access tokens—&gt;create new token,当然如果有,就没必要再次生成了.记住就好了.</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803171435.png" alt="image-20210803171435492"></p>
+<ol start="3">
+<li>添加token,开放权限与有效期均自定义选择</li>
+<li>将生成的token复制到idea中,成功后会显示自己的账号.</li>
+</ol>
+<h5 id="分享项目到github"><a href="#分享项目到github" class="headerlink" title="分享项目到github"></a>分享项目到github</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803180338.png" alt="image-20210803180338200"></p>
+<h5 id="推送与拉取"><a href="#推送与拉取" class="headerlink" title="推送与拉取"></a>推送与拉取</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803180949.png" alt="image-20210803180949319"></p>
+<h5 id="IDEA-克隆仓库代码"><a href="#IDEA-克隆仓库代码" class="headerlink" title="IDEA 克隆仓库代码"></a>IDEA 克隆仓库代码</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803182139.png" alt="image-20210803182139413"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210803182255.png" alt="image-20210803182255727"></p>
+<h4 id="Gitee使用"><a href="#Gitee使用" class="headerlink" title="Gitee使用"></a>Gitee使用</h4><h5 id="结合git客户端"><a href="#结合git客户端" class="headerlink" title="结合git客户端"></a>结合git客户端</h5><p>在gitee上创建一个新仓库,就会出现如下图所示的入门教程.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210804112726.png" alt="image-20210804112726723"></p>
+<h5 id="IDEA集成Gitee"><a href="#IDEA集成Gitee" class="headerlink" title="IDEA集成Gitee"></a>IDEA集成Gitee</h5><ol>
+<li>idea中安装gitee插件</li>
+<li>操作参见github, 同样是add文件,commit,share…</li>
+<li>pull,push,clone 与github一致…</li>
+</ol>
+<h5 id="gitee-迁移github项目"><a href="#gitee-迁移github项目" class="headerlink" title="gitee 迁移github项目"></a>gitee 迁移github项目</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://gitee.com/tadpole145/images/raw/main/20210804114505.png" alt="image-20210804114505544"></p>
+<h4 id="git常见问题"><a href="#git常见问题" class="headerlink" title="git常见问题"></a>git常见问题</h4><h5 id="Q-使用gitee-clone仓库-输入账号密码错误后-如何修改"><a href="#Q-使用gitee-clone仓库-输入账号密码错误后-如何修改" class="headerlink" title="Q: 使用gitee clone仓库,输入账号密码错误后,如何修改?"></a>Q: 使用gitee clone仓库,输入账号密码错误后,如何修改?</h5><blockquote>
+<p>电脑的控制面板–&gt;用户账户–&gt;管理Windows凭据, 找到gitee,重新输入正确的账号密码</p>
+</blockquote>
+<h5 id="查看人家的项目时-ReadMe文档中的图片无法显示"><a href="#查看人家的项目时-ReadMe文档中的图片无法显示" class="headerlink" title="查看人家的项目时,ReadMe文档中的图片无法显示"></a>查看人家的项目时,ReadMe文档中的图片无法显示</h5><blockquote>
+<p>由于ip被墙导致国内经常无法连接github的ip地址, 可以在win系统下, 修改hosts文件  C:\Windows\System32\drivers\etc\hosts</p>
+</blockquote>
+<pre class="line-numbers language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># GitHub520 Host Start  每小时更新,请自行参考官方开源库设置</span>
+<span class="token attr-name">140.82.113.25</span> <span class="token attr-value">                alive.github.com</span>
+<span class="token attr-name">140.82.112.25</span> <span class="token attr-value">                live.github.com</span>
+<span class="token attr-name">185.199.108.154</span> <span class="token attr-value">              github.githubassets.com</span>
+<span class="token attr-name">140.82.114.21</span> <span class="token attr-value">                central.github.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              desktop.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.153</span> <span class="token attr-value">              assets-cdn.github.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              camo.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              github.map.fastly.net</span>
+<span class="token attr-name">199.232.5.194</span> <span class="token attr-value">                github.global.ssl.fastly.net</span>
+<span class="token attr-name">140.82.112.3</span> <span class="token attr-value">                 gist.github.com</span>
+<span class="token attr-name">185.199.108.153</span> <span class="token attr-value">              github.io</span>
+<span class="token attr-name">140.82.114.4</span> <span class="token attr-value">                 github.com</span>
+<span class="token attr-name">192.0.66.2</span> <span class="token attr-value">                   github.blog</span>
+<span class="token attr-name">140.82.112.6</span> <span class="token attr-value">                 api.github.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              raw.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              user-images.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              favicons.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars5.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars4.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars3.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars2.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars1.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars0.githubusercontent.com</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              avatars.githubusercontent.com</span>
+<span class="token attr-name">140.82.113.10</span> <span class="token attr-value">                codeload.github.com</span>
+<span class="token attr-name">52.217.135.113</span> <span class="token attr-value">               github-cloud.s3.amazonaws.com</span>
+<span class="token attr-name">52.217.74.20</span> <span class="token attr-value">                 github-com.s3.amazonaws.com</span>
+<span class="token attr-name">52.217.0.11</span> <span class="token attr-value">                  github-production-release-asset-2e65be.s3.amazonaws.com</span>
+<span class="token attr-name">52.216.250.204</span> <span class="token attr-value">               github-production-user-asset-6210df.s3.amazonaws.com</span>
+<span class="token attr-name">52.217.74.124</span> <span class="token attr-value">                github-production-repository-file-5c1aeb.s3.amazonaws.com</span>
+<span class="token attr-name">185.199.108.153</span> <span class="token attr-value">              githubstatus.com</span>
+<span class="token attr-name">64.71.144.202</span> <span class="token attr-value">                github.community</span>
+<span class="token attr-name">185.199.108.133</span> <span class="token attr-value">              media.githubusercontent.com</span>
+
+
+<span class="token comment" spellcheck="true"># Update time: 2021-08-04T10:15:00+08:00</span>
+<span class="token comment" spellcheck="true"># Update url: https://raw.hellogithub.com/hosts</span>
+<span class="token comment" spellcheck="true"># Star me: https://github.com/521xueweihan/GitHub520</span>
+<span class="token comment" spellcheck="true"># GitHub520 Host End</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="我想clone人家项目-但是很慢-怎么样提速"><a href="#我想clone人家项目-但是很慢-怎么样提速" class="headerlink" title="我想clone人家项目,但是很慢,怎么样提速?"></a>我想clone人家项目,但是很慢,怎么样提速?</h5><blockquote>
+<p>主流的方法有三个:</p>
+<ol>
+<li>修改host文件  (参考上面的开源库) ;</li>
+<li>使用gitee克隆,然后去gitee下载  (推荐指数: ★★★);</li>
+<li>使用gitclone命令 (推荐指数: ★★★★★), 使用教程参考<a target="_blank" rel="noopener" href="https://www.gitclone.com/">官网</a>,推荐方法一,方法二在push项目时候出错.</li>
+<li>使用github镜像下载, <a target="_blank" rel="noopener" href="https://github.com.cnpmjs.org/">镜像一</a>, <a target="_blank" rel="noopener" href="https://hub.fastgit.org/">镜像二</a> (推荐指数: ★★★★★);</li>
+</ol>
+</blockquote>
+<h5 id="我push我的项目-每次push都需要输入账号密码-怎么解决"><a href="#我push我的项目-每次push都需要输入账号密码-怎么解决" class="headerlink" title="我push我的项目,每次push都需要输入账号密码,怎么解决?"></a>我push我的项目,每次push都需要输入账号密码,怎么解决?</h5><blockquote>
+<p>参考上面git命令的设置账号密码,设置如下指令即可达到主需要输入一次性账号密码</p>
+</blockquote>
+<pre><code>//保存账号密码,执行后,输入一次即可
+git config --global credential.helper store
+//清除保存的账号密码
+git config --global credential.helper reset
+</code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://tadpole145.github.io" class="b-link-green">tadpole145's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2020/12/14/gitcmd/" class="b-link-green">Git使用详解</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'MwS61zcq1Ow8LLzpCXKVv9ss-gzGzoHsz',
+        appKey: 'LSs7tpBsizccYa4D0LpHXfPM',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/23/idea-jiao-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="IDEA介绍与使用">
+                        
+                        <span class="card-title">IDEA介绍与使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍IDEA的常用操作命令与使用
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category" target="_blank">
+                                    工具
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AF%E4%BB%B6/" target="_blank">
+                        <span class="chip bg-color">软件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/28/mysql/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="MySQL知识详解">
+                        
+                        <span class="card-title">MySQL知识详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍MySQL的详细安装使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL/" target="_blank">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: tadpole145's blog<br />'
+            + '作者: tadpole145<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 小蝌蚪.
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">64.6k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2021, 01, 19, 00, 00, 00); //北京时间2019-8-1 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+
+      
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+		
+	<script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+</script>
+<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+
+
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

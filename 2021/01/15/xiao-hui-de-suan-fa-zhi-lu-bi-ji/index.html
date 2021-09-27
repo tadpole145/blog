@@ -1,0 +1,1680 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="小灰灰算法之旅笔记, Android java flutter python AI">
+    <meta name="baidu-site-verification" content="fmlEuI34ir" />
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY" />
+    <meta name="description" content="
+来源书籍: 小灰的算法之旅
+语言: Java
+
+数据结构与算法基础概念数据结构
+数据结构是数据的组织、管理和存储格式包括以下常见的结构
+
+
+线性结构
+树
+图
+其它数据结构
+
+算法
+算法是一系列程序指令，用于处理特定的运算和逻辑问题。衡量算">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>小灰灰算法之旅笔记 | tadpole145&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="tadpole145's blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">tadpole145's blog</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">tadpole145's blog</div>
+        <div class="logo-desc">
+            
+            日常学习笔记,包括java,Android,flutter,算法,机器学习,python等.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        小灰灰算法之旅笔记
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" target="_blank">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-category" target="_blank">
+                                基础知识
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-01-15
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        小蝌蚪
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        20 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>来源书籍: 小灰的算法之旅</p>
+<p>语言: Java</p>
+</blockquote>
+<h3 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h3><h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><h5 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h5><blockquote>
+<p>数据结构是数据的组织、管理和存储格式包括以下常见的结构</p>
+</blockquote>
+<ul>
+<li>线性结构</li>
+<li>树</li>
+<li>图</li>
+<li>其它数据结构</li>
+</ul>
+<h5 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h5><blockquote>
+<p>算法是一系列程序指令，用于处理特定的运算和逻辑问题。衡量算法优劣的主要标准是时间复杂度和空间复杂度。</p>
+</blockquote>
+<h6 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h6><blockquote>
+<p>若存在函数f(n)，使得当n趋近于无穷大时，T(n)/f(n)的极限值为不等于零的常数，则称f(n)是T(n)的同数量级函数。记作T(n)=O(f(n))，称为O(f(n))，O为算法的渐进时间复杂度，简称为时间复杂度。只保留最高阶项,常数记为1.</p>
+<p>大白话: 程序执行的时间成本</p>
+</blockquote>
+<h6 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h6><blockquote>
+<p>程序占用的空间大小</p>
+</blockquote>
+<h4 id="线性数据结构"><a href="#线性数据结构" class="headerlink" title="线性数据结构"></a>线性数据结构</h4><h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><blockquote>
+<p>有限个相同类型的变量所组成的有序集合,每个变量被称作为元素.</p>
+</blockquote>
+<h6 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h6><ul>
+<li><p>增: 随机插入(O(n)),尾部插入(O(1)),越界插入(先扩容,再插入,时间复杂度O(n));</p>
+</li>
+<li><p>删:  随机删除(O(n)),尾部删除(O(1))</p>
+</li>
+<li><p>改: 时间复杂度O(1);</p>
+</li>
+<li><p>查: 时间复杂度O(1);</p>
+</li>
+</ul>
+<h6 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h6><p>快速查找,但是写入慢.</p>
+<h5 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h5><h6 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h6><p>在物理上非连续、非顺序的数据结构，由若干节点（node）所组成。</p>
+<h6 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h6><p>每一个节点又包含两部分，一部分是存放数据的变量data，另一部分是指向下一个节点的指针next</p>
+<h6 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h6><p>每一个节点除了拥有data和next指针，还拥有指向前置节点的prev 指针</p>
+<h6 id="常用操作-1"><a href="#常用操作-1" class="headerlink" title="常用操作"></a>常用操作</h6><ul>
+<li>增: 时间复杂度O(1),</li>
+<li>删: 时间复杂度O(1),</li>
+<li>改: 不考虑查找时间,单纯更新,时间复杂度O(1)</li>
+<li>查 : 从第一个节点的指针开始遍历下一个节点,直到找到所需要的元素. 时间复杂度O(n)</li>
+</ul>
+<h5 id="栈-stack"><a href="#栈-stack" class="headerlink" title="栈(stack)"></a>栈(stack)</h5><p>一种线性数据结构; 先入后出  （First   In   Last   Out，简称FILO）,既可以用数组来实现，也可以用链表来实现.</p>
+<h6 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h6><ul>
+<li>入栈 : 增加一个元素</li>
+<li>出栈 : 将栈顶元素弹出</li>
+</ul>
+<h6 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h6><ul>
+<li><p>回溯方法的调用链。比如递归调用</p>
+</li>
+<li><p>面包屑导航, 返回上一级页面</p>
+</li>
+</ul>
+<h5 id="队列-queue"><a href="#队列-queue" class="headerlink" title="队列(queue)"></a>队列(queue)</h5><p>一种先入先出 （First   InFirst  Out，简称FIFO ）的线性数据结构,出口叫头,入口叫尾(rear). 与栈类似，队列这种数据结构既可以用数组来实现，也可以用链表来实现。</p>
+<h6 id="常见操作-1"><a href="#常见操作-1" class="headerlink" title="常见操作"></a>常见操作</h6><ul>
+<li><p>入队: 是把新元素放入队尾的位置，新元素的下一个位置将会成为新的队尾。</p>
+</li>
+<li><p>出队 : 将队头的元素移出,其下一个元素将成为新的队头.</p>
+</li>
+</ul>
+<h6 id="队列的实现"><a href="#队列的实现" class="headerlink" title="队列的实现"></a>队列的实现</h6><p>定容数组通过循环实现.  队尾指针指向的位置永远空出1位，所以队列最大容量比数组长度小1。</p>
+<p>判断队列是否已满:</p>
+<ul>
+<li>一种是另设一个布尔变量来判断；</li>
+<li>第二种是少用一个元素空间，入队时先测试（(rear+1)%size = front）来测试满了还是还有空间；</li>
+<li>第三种就是用一个计数器记录队列中的元素的总数。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210419144504569.png" alt="image-20210419144504569"></p>
+<h6 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h6><ul>
+<li>多线程中，争夺公平锁的等待队列</li>
+<li>网络爬虫实现网站抓取时，也是把待抓取的网站URL存入队列中</li>
+</ul>
+<h5 id="双端队列-Double-ended-queue，简称为Deque"><a href="#双端队列-Double-ended-queue，简称为Deque" class="headerlink" title="双端队列( Double-ended queue，简称为Deque)"></a>双端队列( Double-ended queue，简称为Deque)</h5><p>前端与后端都支持插入和删除操作的队列. </p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210419152101714.png" alt="image-20210419152101714"></p>
+<h6 id="应用-2"><a href="#应用-2" class="headerlink" title="应用"></a>应用</h6><p>存储一系列的撤销操作</p>
+<h5 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h5><p>谁的优先级最高，谁先出队。基于于二叉堆来实现.</p>
+<h5 id="散列表-哈希表"><a href="#散列表-哈希表" class="headerlink" title="散列表(哈希表 )"></a>散列表(哈希表 )</h5><p>通过key–value键值对来存储查找元素. 其本质也是一个数组,只是通过哈希函数,将Key和数组下标进行转换.不同的语言中,哈希函数的实现是不一样的.每一个对象都有属于自己的hashcode，这个hashcode是区分不同对象的重要标识。无论对象自身的类型是什么，它们的hashcode都是一个整型变量。</p>
+<h6 id="什么是hash"><a href="#什么是hash" class="headerlink" title="什么是hash"></a>什么是hash</h6><p>Hash（哈希），又称“散列”。散列（hash）英文原意是“混杂”、“拼凑”、“重新表述”的意思。在某种程度上，散列是与排序相反的一种操作，排序是将集合中的元素按照某种方式比如字典顺序排列在一起，而散列通过计算哈希值，打破元素之间原有的关系，使集合中的元素按照散列函数的分类进行排列。 散列表可以说是数组和链表的结合</p>
+<p> hashCode() 表示的是对当前对象的唯一标示。计算 hashCode 的过程就称作 哈希。</p>
+<h6 id="为什么要有-Hash"><a href="#为什么要有-Hash" class="headerlink" title="为什么要有 Hash"></a>为什么要有 Hash</h6><p>我们通常使用数组或者链表来存储元素，一旦存储的内容数量特别多，需要占用很大的空间，而且在<strong>查找某个元素</strong>是否存在的过程中，数组和链表都需要挨个循环比较，而通过 哈希 计算，可以大大<strong>减少比较次数</strong>。</p>
+<h6 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h6><p>一种映射关系，根据数据的关键词 key ，通过一定的函数关系，计算出该元素存储位置的函数</p>
+<h6 id="常见的哈希函数构造方法"><a href="#常见的哈希函数构造方法" class="headerlink" title="常见的哈希函数构造方法"></a>常见的哈希函数构造方法</h6><ul>
+<li>直接定址法</li>
+</ul>
+<p>取关键字或关键字的某个线性函数值为散列地址。即 H(key) = key 或 H(key) = a*key + b，其中a和b为常数</p>
+<ul>
+<li>除留余数法</li>
+</ul>
+<p>取关键字被某个不大于散列表长度 m 的数 p 求余，得到的作为散列地址。即 H(key) = key % p, p &lt; m。 </p>
+<ul>
+<li>数字分析法</li>
+</ul>
+<p>当关键字的位数大于地址的位数，对关键字的各位分布进行分析，选出分布均匀的任意几位作为散列地址。仅适用于所有关键字都已知的情况下，根据实际应用确定要选取的部分，尽量避免发生冲突。</p>
+<ul>
+<li>平方取中法</li>
+</ul>
+<p>先计算出关键字值的平方，然后取平方值中间几位作为散列地址。随机分布的关键字，得到的散列地址也是随机分布的。</p>
+<ul>
+<li>折叠法（叠加法）</li>
+</ul>
+<p>将关键字分为位数相同的几部分，然后取这几部分的叠加和（舍去进位）作为散列地址。用于关键字位数较多，并且关键字中每一位上数字分布大致均匀。</p>
+<ul>
+<li>随机数法</li>
+</ul>
+<p>选择一个随机函数，把关键字的随机函数值作为它的哈希值。</p>
+<h6 id="哈希冲突的解决"><a href="#哈希冲突的解决" class="headerlink" title="哈希冲突的解决"></a>哈希冲突的解决</h6><ul>
+<li>链接法（拉链法）</li>
+</ul>
+<p>将所有关键字为同义词的结点链接在同一个单链表中。</p>
+<ul>
+<li>==开放定址法==</li>
+</ul>
+<p>使用某种探查(亦称探测)技术在散列表中寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找到。在Java中，ThreadLocal所使用的就是开放寻址法。</p>
+<ul>
+<li>==链表法== (java中的hashMap使用此法)</li>
+</ul>
+<p>HashMap数组的每一个元素不仅是一个Entry对象，还是一个链表的头节点。每一个Entry对象通过next指针指向它的下一个Entry节点。当新来的Entry映射到与之冲突的数组位置时，只需要插入到对应的链表中即可。</p>
+<p>当经过多次元素插入，散列表达到一定饱和度时，Key映射位置发生冲突的概率会逐渐提高。大量元素拥挤在相同的数组下标位置，形成很长的链表，对后续插入操作和查询操作的性能都有很大影响。这时就需要对散列表进行扩容.</p>
+<p>对HashMap来说,影响扩容的影子有2个:</p>
+<ul>
+<li>Capacity ，即HashMap的当前长度</li>
+<li>LoadFactor ，即HashMap的负载因子，默认值为0.75f</li>
+</ul>
+<h6 id="如今扩容"><a href="#如今扩容" class="headerlink" title="如今扩容?"></a>如今扩容?</h6><ul>
+<li>创建一个新的Entry空数组，长度是原数组的2倍。</li>
+<li>重新Hash. 遍历原Entry数组，把所有的Entry重新Hash到新数组中。为什么要重新Hash呢？因为长度扩大以后，Hash的规则也随之改变。</li>
+</ul>
+<p>JDK    8和以前的版本有着很大的不同。当多个Entry被Hash到同一个数组下标位置时，为了提升插入和查找的效率，HashMap会把Entry的链表转化为红黑树这种数据结构。</p>
+<h6 id="哈希的应用"><a href="#哈希的应用" class="headerlink" title="哈希的应用"></a>哈希的应用</h6><ul>
+<li>哈希表</li>
+<li>分布式缓存</li>
+</ul>
+<h4 id="树"><a href="#树" class="headerlink" title="树"></a>树</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>树（tree）是n（n≥0）个节点的有限集。当n=0时，称为空树。</p>
+<p>根节点: 没有父节点的节点</p>
+<p>叶子节点: 没有孩子的节点</p>
+<p>树的高度/深度: 树的最大层级数</p>
+<h5 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h5><p>树的一种特殊形式,每个节点最多有2个孩子节点.</p>
+<p><strong>满二叉树</strong>: 所有非叶子节点都存在左右孩子，并且所有叶子节点都在同一层级上，那么这个树就是满二叉树。<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210420170501412.png" alt="image-20210420170501412"></p>
+<p><strong>完全二叉树</strong>:  一棵深度为k的有n个结点的二叉树，对树中的结点按从上至下、从左到右的顺序进行编号，如果编号为i（1≤i≤n）的结点与满二叉树中编号为i的结点在二叉树中的位置相同，则这棵二叉树称为完全二叉树</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210420171721108.png" alt="image-20210420171721108"></p>
+<h6 id="二叉树的表达"><a href="#二叉树的表达" class="headerlink" title="二叉树的表达"></a>二叉树的表达</h6><p>其属于逻辑结构,即可用数组来表达,也可以使用链表来表达.</p>
+<h6 id="应用-3"><a href="#应用-3" class="headerlink" title="应用"></a>应用</h6><ul>
+<li><p>进行查找操作</p>
+</li>
+<li><p>维持相对顺序</p>
+</li>
+</ul>
+<p><strong>二叉查找树(二叉排序树):</strong> </p>
+<ul>
+<li>如果左子树不为空，则左子树上所有节点的值均小于根节点的值</li>
+<li>如果右子树不为空，则右子树上所有节点的值均大于根节点的值</li>
+<li>左、右子树也都是二叉查找树</li>
+</ul>
+<p>对于一个节点分布相对均衡  的二叉查找树来说，如果节点总数是n，那么搜索节点的时间复杂度就是O(logn) ，和树的深度是一样的。它和二分查找算法非常相似。</p>
+<h5 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h5><p>遍历本身是一个线性操作。但是二叉树是非线性结构,以不同的方式遍历,遍历顺序也不一样.一般分为以下几种:</p>
+<ul>
+<li>深度优先遍历<ul>
+<li>前序遍历。</li>
+<li>中序遍历。</li>
+<li>后序遍历。</li>
+</ul>
+</li>
+<li>广度优先遍历<ul>
+<li>层序遍历。</li>
+</ul>
+</li>
+</ul>
+<h6 id="前序遍历—-中左右"><a href="#前序遍历—-中左右" class="headerlink" title="前序遍历— 中左右"></a>前序遍历— 中左右</h6><p>从根节点开始遍历,再到左孩子,接着到左孩子的左孩子,如果没有就遍历右孩子,再返回上一层级先左后右依次遍历.</p>
+<h6 id="中序遍历—-左中右"><a href="#中序遍历—-左中右" class="headerlink" title="中序遍历— 左中右"></a>中序遍历— 左中右</h6><p>输出顺序是左子树、根节点、右子树;  首先访问根节点的左孩子，如果这个左孩子还拥有左孩子，则继续深入访问下去，一直找到不再有左孩子的节点，并输出该节点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210421091054369.png" alt="image-20210421091054369"></p>
+<h6 id="后续遍历—左右中"><a href="#后续遍历—左右中" class="headerlink" title="后续遍历—左右中"></a>后续遍历—左右中</h6><p>二叉树的后序遍历，输出顺序是左子树、右子树、根节点。先左右孩子后父亲</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210421092234719.png" alt="image-20210421092234719"></p>
+<p>这3种遍历方式的==区别==，仅仅是==根节点输出的执行位置不同==：前序遍历的输出在前，中序遍历的输出在中间，后序遍历的输出在最后。</p>
+<h6 id="遍历实现方式"><a href="#遍历实现方式" class="headerlink" title="遍历实现方式"></a>遍历实现方式</h6><ul>
+<li><p>递归方法</p>
+</li>
+<li><p>栈</p>
+</li>
+</ul>
+<h6 id="广度优先遍历方式—队列"><a href="#广度优先遍历方式—队列" class="headerlink" title="广度优先遍历方式—队列"></a>广度优先遍历方式—队列</h6><p>从根节点开始,先入队,后出队, 左孩子右孩子接着入队,如此循环直到结束.</p>
+<h5 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h5><p>本质上是一种完全二叉树,分为</p>
+<ul>
+<li>最大堆: 最大堆的任何一个父节点的值，都大于或等于它左、右孩子节点的值。堆顶是整个堆中的最大元素</li>
+<li>最小堆: 最小堆的任何一个父节点的值，都小于或等于它左、右孩子节点的值。堆顶是整个堆中的最小元素 。</li>
+</ul>
+<h6 id="二叉堆的构建"><a href="#二叉堆的构建" class="headerlink" title="二叉堆的构建"></a>二叉堆的构建</h6><ul>
+<li>二叉堆插入节点: 将不符合的新节点与其父节点交换位置,直到符合为止.</li>
+<li>二叉堆删除节点: 使用完全二叉树最底下的一个叶子节点替代被删除的节点,然后与其左右孩子进行比较后交换位置,直到符合要求为止.</li>
+<li>非二叉堆构建二叉堆:  首先，从最后一个非叶子节点开始,与其左右孩子交换位置,逐层从右到左的进行动态交换,直到整棵树符合要求.</li>
+</ul>
+<h6 id="二叉堆的代码实现"><a href="#二叉堆的代码实现" class="headerlink" title="二叉堆的代码实现"></a>二叉堆的代码实现</h6><p>二叉堆虽然是一个完全二叉树，但它的存储方式并不是链式存储，而是顺序存储。二叉堆的所有节点都存储在数组中。</p>
+<p>假设父节点的下标是parent，那么它的左孩子下标就是 2×parent+1 ；右孩子下标就是2×parent+2 。</p>
+<h6 id="应用-4"><a href="#应用-4" class="headerlink" title="应用"></a>应用</h6><p> 二叉堆是实现堆排序  及优先队列的基础。</p>
+<h5 id="优先队列-1"><a href="#优先队列-1" class="headerlink" title="优先队列"></a>优先队列</h5><ul>
+<li>最大优先队列:  无论入队顺序如何，都是当前最大的元素优先出队</li>
+<li>最小优先队列，无论入队顺序如何，都是当前最小的元素优先出队</li>
+</ul>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><h6 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h6><p> <strong>按时间复杂度划分</strong></p>
+<ul>
+<li><p>时间复杂度O(n^2  )的排序算法</p>
+<ul>
+<li>冒泡排序</li>
+<li>选择排序</li>
+<li>插入排序</li>
+<li>希尔排序</li>
+</ul>
+</li>
+<li><p>时间复杂度O(nlogn)的排序算法</p>
+<ul>
+<li>快速排序</li>
+<li>归并排序</li>
+<li>堆排序</li>
+</ul>
+</li>
+<li><p>时间复杂度为线性的排序算法</p>
+<ul>
+<li>计数排序</li>
+<li>桶排序</li>
+<li>基数排序</li>
+</ul>
+</li>
+</ul>
+<p><strong>按稳定性划分</strong></p>
+<p>稳定排序: 排序前后,顺序保持不变.</p>
+<h5 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h5><p>思想:循环遍历比较相邻元素,大的右移, 排序后相同的值顺序不变,属于稳定排序.</p>
+<h6 id="冒泡排序的优化"><a href="#冒泡排序的优化" class="headerlink" title="冒泡排序的优化"></a>冒泡排序的优化</h6><ul>
+<li>设置是否有序的flag,如果有序了,则直接跳出循环,遍历结束.</li>
+<li>记录最后一次元素交换的位置,即为无序数列的边界,后面就是有序数列,无需排序.</li>
+</ul>
+<h5 id="鸡尾酒排序"><a href="#鸡尾酒排序" class="headerlink" title="鸡尾酒排序"></a>鸡尾酒排序</h5><p>思路: 第一轮从左到右,第二轮从右到左,如此循环直到有序,代码外层的大循环控制着所有排序回合，大循环内包含2个小循环，第1个小循环从左向右比较并交换元素，第2个小循环从右向左比较并交换元素。</p>
+<ul>
+<li>优点: 能够在特定条件下，减少排序的回合数；</li>
+<li>缺点: 代码量几乎增加了1倍。</li>
+</ul>
+<p>它能发挥出优势的场景，是大部分元素已经有序的情况。</p>
+<h5 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h5><h6 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h6><p>在每一轮挑选一个基准元素，并让其他比它大的元素移动到数列一边，比它小的元素移动到数列的另一边，从而把数列拆解成两个部分。</p>
+<h6 id="基准元素的选取"><a href="#基准元素的选取" class="headerlink" title="基准元素的选取"></a>基准元素的选取</h6><ul>
+<li>选择第一个元素</li>
+<li>随机选一个元素, 和第一个元素交换位置</li>
+</ul>
+<h6 id="元素交换"><a href="#元素交换" class="headerlink" title="元素交换"></a>元素交换</h6><ul>
+<li>双边循环法</li>
+</ul>
+<blockquote>
+<p>设置left和right 2个指针,指向数列的最左和最右2个元素,第一次循环,从right指针开始,如果≥基准元素pivot,则指针向左移动一位直到条件不满足,否则停止移动,切换到left指针, 如果left≤pivot,则右移一位,否则停止移动.这时,让左右指针的元素交换.然后右指针左移一位,左指针右移一位,接着进入第二轮的循环重复第一轮步骤.直到左右指针重合,然后交换重合指针的元素与基准元素的位置,使之成为新的基准元素.</p>
+<p>实现方式: 递归</p>
+</blockquote>
+<ul>
+<li>单边循环法</li>
+</ul>
+<blockquote>
+<p>选定第一个作为基准元素, 同时设置第一个元素为mark指针,它代表小于基准元素的区域边界.然后开始遍历,如果＞pivot,则继续遍历,如果＜pivot,则mark指针右移一位,然后让新遍历到的元素和mark指针处的元素交换位置,遍历完成后把pivot的元素和mark指针元素交换位置,第一轮结束. 然后以同样的方法,分别遍历刚刚分割好的2部分.</p>
+<p>实现方式: 递归或者栈</p>
+</blockquote>
+<h5 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h5><h6 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h6><ol>
+<li> 把无序数组构建成二叉堆。需要从小到大排序，则构建成最大堆；需要从大到小排序，则构建成最小堆。</li>
+<li>循环删除堆顶元素，替换到二叉堆的末尾，调整堆产生新的堆顶。</li>
+</ol>
+<h6 id="快排与堆排序对比"><a href="#快排与堆排序对比" class="headerlink" title="快排与堆排序对比"></a>快排与堆排序对比</h6><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">快排</th>
+<th align="center">堆排</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">平均时间复杂度</td>
+<td align="center">O(nlogn)</td>
+<td align="center">O(nlogn)</td>
+</tr>
+<tr>
+<td align="center">最坏时间复杂度</td>
+<td align="center">O(n  2  )</td>
+<td align="center">O(nlogn)</td>
+</tr>
+<tr>
+<td align="center">空间复杂度</td>
+<td align="center">O(logn)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">稳定性</td>
+<td align="center">不稳定</td>
+<td align="center">不稳定</td>
+</tr>
+</tbody></table>
+<h5 id="线性时间排序"><a href="#线性时间排序" class="headerlink" title="线性时间排序"></a>线性时间排序</h5><h5 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h5><h6 id="实现思路-1"><a href="#实现思路-1" class="headerlink" title="实现思路"></a>实现思路</h6><p>以元素值为数组下标,以出现的次数为数组的元素.顺序遍历数组,没遍历一个元素则在与之对应的下标处的元素+1, 最后遍历新数组,按元素次数输出对应的下标.</p>
+<p>它适用于一定范围内的整数排序。在取值范围不是很大的情况下，它的性<br>能甚至快过那些时间复杂度为O(nlogn)的排序。</p>
+<h5 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h5><h6 id="实现思路-2"><a href="#实现思路-2" class="headerlink" title="实现思路"></a>实现思路</h6><ol>
+<li>创建与数列等个数的桶;</li>
+<li>确定每个桶的区间,最后一个桶只包含数列最大值外，前面各个桶的区间按照比例来确定, 区间跨度 = （最大值-最小值）/ （桶的数量 - 1）</li>
+<li>对桶内部进行排序</li>
+<li>遍历所有桶并输出</li>
+</ol>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210423102653611.png" alt="image-20210423102653611"></p>
+<h4 id="面试关键算法问题"><a href="#面试关键算法问题" class="headerlink" title="面试关键算法问题"></a>面试关键算法问题</h4><h5 id="判断链表是否有环"><a href="#判断链表是否有环" class="headerlink" title="判断链表是否有环"></a>判断链表是否有环</h5><p>双指针方法: 数学上的追及问题,保证2个指针速度不一致,只要有环就可以追上.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">双层循环判断</th>
+<th align="center">采用hashMap记录</th>
+<th align="center">双指针方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">时间复杂度</td>
+<td align="center">O(n^2)</td>
+<td align="center">O(n)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">空间复杂度</td>
+<td align="center">O(1)</td>
+<td align="center">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h5 id="如何求出环长"><a href="#如何求出环长" class="headerlink" title="如何求出环长"></a>如何求出环长</h5><p>数学的追及问题, 第一次相遇后,继续前行,第二次相遇,统计出的步长=环长, 因为二指针的速度是1倍的关系,当速度慢的走一圈,速度快的恰好走了2圈了.</p>
+<h5 id="如何求入环点"><a href="#如何求入环点" class="headerlink" title="如何求入环点"></a>如何求入环点</h5><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210425175232254.png" alt="image-20210425175232254"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://raw.githubusercontent.com/tadpole145/images/main/image-20210425175355372.png" alt="image-20210425175355372"></p>
+<p>只要把其中一个指针放回到头节点位置，另一个指针保持在首次相遇点，两个指针都是每次向前走1步。那么，它们最终相遇的节点，就是入环节点。</p>
+<h5 id="实现一个包含出栈（pop）、入栈（push）、取最小元素（getMin）3个方法时间复杂度为O-1-的栈"><a href="#实现一个包含出栈（pop）、入栈（push）、取最小元素（getMin）3个方法时间复杂度为O-1-的栈" class="headerlink" title="实现一个包含出栈（pop）、入栈（push）、取最小元素（getMin）3个方法时间复杂度为O(1)的栈."></a>实现一个包含出栈（pop）、入栈（push）、取最小元素（getMin）3个方法时间复杂度为O(1)的栈.</h5><p>思路: 创建2个栈,A为普通栈, B为辅助栈, 第一个元素,AB栈均入栈,第二个元素,A正常入栈,B则查看是否小于B的栈顶元素,＜则入栈,否则放弃, 当A出栈时,检查该元素是否是B中的最小,如果是则出栈,这样B一直存放的是A中的最小元素.</p>
+<h5 id="求最大公约数"><a href="#求最大公约数" class="headerlink" title="求最大公约数"></a>求最大公约数</h5><p><strong>欧几里得算法</strong>: 两个正整数a和b（a&gt;b），它们的最大公约数等于a除以b的余数c和b之间的最大公约数。如果C=0,则b为公约数,否则通过递归,不断求取余数,直到最后为1.此时对应的被除数即为最大公约数.  </p>
+<p><strong>缺点</strong>: 整数较大的时候,性能比较差</p>
+<p><strong>更相减损术</strong>: 两个正整数a和b（a&gt;b），它们的最大公约数等于a-b的差值c和较小数b的最大公约数。如果c=0 ,那边b就为最大公约数,否则递归下去直到c=0</p>
+<p><strong>缺点</strong>:  运算次数比取模多</p>
+<p>最优解法: 结合欧几里得算法与更相减损法,采用偶数位运算的方法.直到最后a=b.</p>
+<ul>
+<li>当a和b均为偶数时，gcd(a,b) = 2×gcd(a/2, b/2) = 2×gcd(a&gt;&gt;1,b&gt;&gt;1)。</li>
+<li>当a为偶数，b为奇数时，gcd(a,b) = gcd(a/2,b) = gcd(a&gt;&gt;1,b)。</li>
+<li>当a为奇数，b为偶数时，gcd(a,b) = gcd(a,b/2) = gcd(a,b&gt;&gt;1)。</li>
+<li>当a和b均为奇数时，先利用更相减损术运算一次，gcd(a,b)    =    gcd(b,a-<br>b)，此时a-b必然是偶数，然后又可以继续进行移位运算。</li>
+</ul>
+<p>如果(a&amp;1)==0，则说明整数a是偶数；如果(a&amp;1)!=0，则说明整数a是奇数.</p>
+<h5 id="判断2的整数次幂"><a href="#判断2的整数次幂" class="headerlink" title="判断2的整数次幂"></a>判断2的整数次幂</h5><p>思路:  凡是2的整数次幂的数,其二进制都是最高位1,其余位0,如果将这个数-1, 其二进制数字全部变为1,这时候使用位与运算n&amp;(n-1),结果必为0,否则不是2的整数幂.</p>
+<h5 id="求无序数组的任意2个相邻元素的最大差值"><a href="#求无序数组的任意2个相邻元素的最大差值" class="headerlink" title="求无序数组的任意2个相邻元素的最大差值"></a>求无序数组的任意2个相邻元素的最大差值</h5><ul>
+<li><p>通过计数排序的思想,求出原数组的最大值与最小值,然后计算区间并创立新数组,遍历原数组,把新数组对应下标的元素+1,遍历结束后, 遍历新数组,统计最大连续出现0值的次数,其下标差值即为最大相邻差.</p>
+<p><strong>缺点</strong>: 当原数组元素最大最小值差距很大的时候,会大大增加其时间与空间复杂度</p>
+</li>
+<li><p>采用桶排序思想,创建与原数组等个数的桶,跨度为（max-min）/（n-1）。遍历后插入对应的桶中,记录桶的最大最小值.然后遍历所有的桶,统计每个桶的最大值与右侧非空桶的最小值的差,求取最大差值.</p>
+</li>
+</ul>
+<h5 id="如何使用栈实现队列"><a href="#如何使用栈实现队列" class="headerlink" title="如何使用栈实现队列"></a>如何使用栈实现队列</h5><p>栈: 先入后出, 队列: 先入先出. 在学习数学时,一个数如果倒一次是倒数,倒2次就是自己本身了,同样道理,栈第一次是先入后出,再按出栈顺序添加到另外一个栈中,后入A栈的就变成先入B栈了,这样执行2次进栈,顺序就变成先进先出了.</p>
+<h5 id="寻找全排列的下一个数"><a href="#寻找全排列的下一个数" class="headerlink" title="寻找全排列的下一个数"></a>寻找全排列的下一个数</h5><p>思路: 字典序算法; </p>
+<ol>
+<li>从后向前查看逆序区域,找到逆序区域的前一位,就是数字置换的边界;</li>
+<li>让逆序区域的前一位和逆序区域中大于它的最小的数字交换位置;</li>
+<li>把原来的逆序区域额转为顺序状态;</li>
+</ol>
+<h5 id="删去k个数字后的最小值"><a href="#删去k个数字后的最小值" class="headerlink" title="删去k个数字后的最小值"></a>删去k个数字后的最小值</h5><p>思路: 贪心算法</p>
+<p>从左向右遍历，找到比自己右侧数字大的数字并删除; 如果没有找到要删除的数字，则删除最后一个数字, 然后清除整数左侧的数字0</p>
+<p>优化:  采用出入栈的方式更节省时间与空间. 从前往后遍历,先入栈,然后比较当前栈与下一个数字的大小,如果逆序则栈顶出栈(代表删除),新数组入栈.重复出入栈K次即可</p>
+<h5 id="如何实现大整数相加"><a href="#如何实现大整数相加" class="headerlink" title="如何实现大整数相加"></a>如何实现大整数相加</h5><p>把大整数拆成int 或者long类型范围内的数组,然后遍历数组相加减.参考BigDecimal底层实现的算法.</p>
+<h5 id="如何求解金矿问题"><a href="#如何求解金矿问题" class="headerlink" title="如何求解金矿问题"></a>如何求解金矿问题</h5><p>思路: 动态规划, 确定全局最优解与最优子结构之间的关系,以及问题的边界.</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://tadpole145.github.io" class="b-link-green">tadpole145's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2021/01/15/xiao-hui-de-suan-fa-zhi-lu-bi-ji/" class="b-link-green">小灰灰算法之旅笔记</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'MwS61zcq1Ow8LLzpCXKVv9ss-gzGzoHsz',
+        appKey: 'LSs7tpBsizccYa4D0LpHXfPM',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/02/13/springboot2-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SpringBoot笔记">
+                        
+                        <span class="card-title">SpringBoot笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍SpringBoot的入门与使用
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="post-category" target="_blank">
+                                    开发教程
+                                </a>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/java/" class="post-category" target="_blank">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SpringBoot/" target="_blank">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/25/maven/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Maven的介绍与使用">
+                        
+                        <span class="card-title">Maven的介绍与使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍Maven的安装配置与使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category" target="_blank">
+                                    工具
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/" target="_blank">
+                        <span class="chip bg-color">编译工具</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: tadpole145's blog<br />'
+            + '作者: tadpole145<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 小蝌蚪.
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">64.6k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2021, 01, 19, 00, 00, 00); //北京时间2019-8-1 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+
+      
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+		
+	<script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+</script>
+<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+
+
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
