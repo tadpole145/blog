@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>个人博客搭建</title>
-      <link href="2021/09/27/blog/"/>
-      <url>2021/09/27/blog/</url>
-      
-        <content type="html"><![CDATA[<h3 id="个人博客搭建"><a href="#个人博客搭建" class="headerlink" title="个人博客搭建"></a>个人博客搭建</h3><p>直接使用md写文档,然后通过hexo发布在github page上.</p><p>使用到的工具(安装Node后请先<strong>添加国内镜像源</strong>):</p><ul><li><a href="https://nodejs.org/zh-cn/">Node</a></li><li><a href="https://git-scm.com/">git</a>,  <a href="https://npm.taobao.org/mirrors/git-for-windows/">镜像下载</a></li><li><a href="https://github.com/">github</a></li><li><a href="https://hexo.io/zh-cn/">hexo</a></li></ul><p>参考文章:  <a href="http://blinkfox.com/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1">hexo官方教程★★★推荐</a>; <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">官方github地址</a>;  <a href="https://sunhwee.com/posts/6e8839eb.html#toc-heading-2">Hexo+Github博客搭建完全教程</a></p><h5 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h5><p>千万不要偷懒,搭建博客系统要先学学node知识,git知识,hexo官方文档,再开始搭建自己的博客.自己踩坑git的main,master主干/分支, githubPage显示,hexo与node版本不兼容等….其实你都按照最新的文档就不会踩坑了.</p><p>由于参考文章教程写的非常详细,直接照着来就行,这儿记录下hexo的几个常用操作命令就好.</p><pre class="line-numbers language-bash"><code class="language-bash">  hexo init <span class="token operator">&lt;</span>xxx<span class="token operator">></span>  <span class="token comment" spellcheck="true"># 初始化</span>  hexo version   <span class="token comment" spellcheck="true">#显示版本</span>  hexo clean  <span class="token comment" spellcheck="true">#清除生成的文件</span>  hexo f    <span class="token comment" spellcheck="true">#强制重新生成文件</span>  hexo g <span class="token comment" spellcheck="true">#生成网页, 只生成有变动的网页</span>  hexo s  <span class="token comment" spellcheck="true">#启动服务器,可以本地预览,默认情况下，访问网址为： `http://localhost:4000/`</span>  hexo publish <span class="token punctuation">[</span>layout<span class="token punctuation">]</span> <span class="token operator">&lt;</span>filename<span class="token operator">></span>  <span class="token comment" spellcheck="true"># 发表草稿</span>  hexo d  <span class="token comment" spellcheck="true"># 部署</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>网上一些博客写的X分钟搭建个人blog等,我不太建议直接copy人家的源码修改,还是自己看看<a href="https://hexo.io/zh-cn/docs/configuration">hexo配置文档</a>,只有了解了,才知道怎么写. </p><p><strong>Tips</strong>: 配置文档_config.yml里面的写法都是==冒号后面添加<strong>空格</strong>==,再跟value值,不然会报错.</p><h5 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h5><ul><li><p>方法一,根据模板自动生成</p><blockquote><p>首先在博客根目录下右键打开<code>git bash</code>，安装一个扩展<code>npm i hexo-deployer-git</code>。</p><p>然后输入<code>hexo new post "article title"</code>，或者<code>hexo new "xxx"</code>新建一篇文章。</p><p>然后打开<code>...\MyBlog\source\_posts</code>的目录，可以发现下面多了一个文件夹和一个<code>.md</code>文件，一个用来存放你的图片等数据，另一个就是你的文章文件啦。默认是以根目录/scaffold/post.md文档为模板生成的,模板里面有一些配置好的参数,修改就行.</p></blockquote></li><li><p>方法二, 手动生成</p><blockquote><p>自己在<code>...\MyBlog\source\_posts</code>目录下新建md文档,然后typora,,鼠标右键自己插入插入YAML front Fmatter,在里面添加的字段就行,参数含义对照官网配置文档说明去看.</p><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> 测试4<span class="token key atrule">author</span><span class="token punctuation">:</span> 小蝌蚪<span class="token key atrule">top</span><span class="token punctuation">:</span> <span class="token boolean important">false  </span><span class="token comment" spellcheck="true">#是否置顶</span><span class="token key atrule">cover</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span class="token key atrule">toc</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span class="token key atrule">tags</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true">#标签</span>  <span class="token punctuation">-</span> test<span class="token key atrule">categories</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true">#分类</span>  <span class="token punctuation">-</span> default<span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2021-01-19 16:05:12</span><span class="token key atrule">img</span><span class="token punctuation">:</span><span class="token key atrule">coverImg</span><span class="token punctuation">:</span><span class="token key atrule">password</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true">#密码,查了下,功能还没搞定</span><span class="token key atrule">summary</span><span class="token punctuation">:</span> 这里是文章摘要哦.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote></li></ul><h5 id="添加标签-分类设置"><a href="#添加标签-分类设置" class="headerlink" title="添加标签/分类设置"></a>添加标签/分类设置</h5><ul><li>方法一, Diary1是Diary2的父级</li></ul><pre><code>categories:  - Diary1  - Diary2tags:  - PS3  - Games</code></pre><ul><li>方法二, PlayStation和Games同级,Diary是他们两个的父级, Diary和life同级</li></ul><pre><code>categories:  - [Diary, PlayStation]  - [Diary, Games]  - [Life]</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客搭建 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>java基础知识面试总结</title>
       <link href="2021/09/18/mian-shi-chong-nan-dian/"/>
       <url>2021/09/18/mian-shi-chong-nan-dian/</url>
@@ -454,6 +429,31 @@
         <tags>
             
             <tag> 计算机原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>个人博客搭建</title>
+      <link href="2020/09/25/blog/"/>
+      <url>2020/09/25/blog/</url>
+      
+        <content type="html"><![CDATA[<h3 id="个人博客搭建"><a href="#个人博客搭建" class="headerlink" title="个人博客搭建"></a>个人博客搭建</h3><p>直接使用md写文档,然后通过hexo发布在github page上.</p><p>使用到的工具(安装Node后请先<strong>添加国内镜像源</strong>):</p><ul><li><a href="https://nodejs.org/zh-cn/">Node</a></li><li><a href="https://git-scm.com/">git</a>,  <a href="https://npm.taobao.org/mirrors/git-for-windows/">镜像下载</a></li><li><a href="https://github.com/">github</a></li><li><a href="https://hexo.io/zh-cn/">hexo</a></li></ul><p>参考文章:  <a href="http://blinkfox.com/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1">hexo官方教程★★★推荐</a>; <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">官方github地址</a>;  <a href="https://sunhwee.com/posts/6e8839eb.html#toc-heading-2">Hexo+Github博客搭建完全教程</a></p><h5 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h5><p>千万不要偷懒,搭建博客系统要先学学node知识,git知识,hexo官方文档,再开始搭建自己的博客.自己踩坑git的main,master主干/分支, githubPage显示,hexo与node版本不兼容等….其实你都按照最新的文档就不会踩坑了.</p><p>由于参考文章教程写的非常详细,直接照着来就行,这儿记录下hexo的几个常用操作命令就好.</p><pre class="line-numbers language-bash"><code class="language-bash">  hexo init <span class="token operator">&lt;</span>xxx<span class="token operator">></span>  <span class="token comment" spellcheck="true"># 初始化</span>  hexo version   <span class="token comment" spellcheck="true">#显示版本</span>  hexo clean  <span class="token comment" spellcheck="true">#清除生成的文件</span>  hexo f    <span class="token comment" spellcheck="true">#强制重新生成文件</span>  hexo g <span class="token comment" spellcheck="true">#生成网页, 只生成有变动的网页</span>  hexo s  <span class="token comment" spellcheck="true">#启动服务器,可以本地预览,默认情况下，访问网址为： `http://localhost:4000/`</span>  hexo publish <span class="token punctuation">[</span>layout<span class="token punctuation">]</span> <span class="token operator">&lt;</span>filename<span class="token operator">></span>  <span class="token comment" spellcheck="true"># 发表草稿</span>  hexo d  <span class="token comment" spellcheck="true"># 部署</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>网上一些博客写的X分钟搭建个人blog等,我不太建议直接copy人家的源码修改,还是自己看看<a href="https://hexo.io/zh-cn/docs/configuration">hexo配置文档</a>,只有了解了,才知道怎么写. </p><p><strong>Tips</strong>: 配置文档_config.yml里面的写法都是==冒号后面添加<strong>空格</strong>==,再跟value值,不然会报错.</p><h5 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h5><ul><li><p>方法一,根据模板自动生成</p><blockquote><p>首先在博客根目录下右键打开<code>git bash</code>，安装一个扩展<code>npm i hexo-deployer-git</code>。</p><p>然后输入<code>hexo new post "article title"</code>，或者<code>hexo new "xxx"</code>新建一篇文章。</p><p>然后打开<code>...\MyBlog\source\_posts</code>的目录，可以发现下面多了一个文件夹和一个<code>.md</code>文件，一个用来存放你的图片等数据，另一个就是你的文章文件啦。默认是以根目录/scaffold/post.md文档为模板生成的,模板里面有一些配置好的参数,修改就行.</p></blockquote></li><li><p>方法二, 手动生成</p><blockquote><p>自己在<code>...\MyBlog\source\_posts</code>目录下新建md文档,然后typora,,鼠标右键自己插入插入YAML front Fmatter,在里面添加的字段就行,参数含义对照官网配置文档说明去看.</p><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> 测试4<span class="token key atrule">author</span><span class="token punctuation">:</span> 小蝌蚪<span class="token key atrule">top</span><span class="token punctuation">:</span> <span class="token boolean important">false  </span><span class="token comment" spellcheck="true">#是否置顶</span><span class="token key atrule">cover</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span class="token key atrule">toc</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span class="token key atrule">tags</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true">#标签</span>  <span class="token punctuation">-</span> test<span class="token key atrule">categories</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true">#分类</span>  <span class="token punctuation">-</span> default<span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2021-01-19 16:05:12</span><span class="token key atrule">img</span><span class="token punctuation">:</span><span class="token key atrule">coverImg</span><span class="token punctuation">:</span><span class="token key atrule">password</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true">#密码,查了下,功能还没搞定</span><span class="token key atrule">summary</span><span class="token punctuation">:</span> 这里是文章摘要哦.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote></li></ul><h5 id="添加标签-分类设置"><a href="#添加标签-分类设置" class="headerlink" title="添加标签/分类设置"></a>添加标签/分类设置</h5><ul><li>方法一, Diary1是Diary2的父级</li></ul><pre><code>categories:  - Diary1  - Diary2tags:  - PS3  - Games</code></pre><ul><li>方法二, PlayStation和Games同级,Diary是他们两个的父级, Diary和life同级</li></ul><pre><code>categories:  - [Diary, PlayStation]  - [Diary, Games]  - [Life]</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客搭建 </tag>
             
         </tags>
       
